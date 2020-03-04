@@ -3,23 +3,22 @@ package com.yorkmass.demo.domain;
 
 public class User {
 
-  private Integer id;
+  private Integer userid;
   private String username;
   private String password;
   private String name;
-  private Integer roleid;
   private Integer gender;
   private java.sql.Date birth;
   private String phone;
   private String email;
 
 
-  public Integer getId() {
-    return id;
+  public Integer getUserid() {
+    return userid;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setUserid(Integer userid) {
+    this.userid = userid;
   }
 
 
@@ -47,15 +46,6 @@ public class User {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-
-  public Integer getRoleid() {
-    return roleid;
-  }
-
-  public void setRoleid(Integer roleid) {
-    this.roleid = roleid;
   }
 
 

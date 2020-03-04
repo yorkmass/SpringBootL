@@ -18,6 +18,13 @@ public class UserInfoController {
     public String userInfo(HttpServletRequest request,Model model){
         String token= service.getTokenFromClient(request);
         User user=service.getUserByToken(token);
+        model.addAttribute("role",service.getRoles(user.getUsername()).get(0));
+        model.addAttribute("name",user.getName());
+        model.addAttribute("username",user.getUsername());
+        model.addAttribute("birth",user.getBirth());
+        model.addAttribute("gender",user.getGender()==1?"男":"女");
+        model.addAttribute("email",user.getEmail());
+        model.addAttribute("phone",user.getPhone());
         return "thymeleaf/userinfo";
     }
 }

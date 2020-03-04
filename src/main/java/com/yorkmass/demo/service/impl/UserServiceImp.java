@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -46,8 +47,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public String getRole(String username) {
-        return myUserMapper.getRolebyUsername(username);
+    public List<String> getRoles(String username) {
+        return myUserMapper.getRolesbyUsername(username);
     }
 
     @Override

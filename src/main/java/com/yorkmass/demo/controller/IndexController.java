@@ -25,25 +25,30 @@ public class IndexController {
         return "thymeleaf/login";
     }
     //@CookieValue("token") String token 注解获取cookies
+    /*
+    主页，判断是否登录过，如果token为空，返回登录页面
+     */
     @RequestMapping("/index")
     public String indexPage(HttpServletRequest request,Model model){
         String token = service.getTokenFromClient(request);
         if(token!=null){
             String username=service.getUsernameByToken(token);
-            model.addAttribute("rolename",service.getRole(username));
+            model.addAttribute("rolename",service.getRoles(username).get(0));
             return "thymeleaf/index";
         }else {
             return "thymeleaf/login";
         }
     }
-
+    /*
+    欢迎页面，用token获取用户信息
+     */
     @RequestMapping("/welcome")
     public String welcomePage(HttpServletRequest request,Model model){
         String token = service.getTokenFromClient(request);
         if(token!=null){
             String username=service.getUsernameByToken(token);
             User user=service.getUser(username);
-            String role=service.getRole(username);
+            String role=service.getRoles(username).get(0);
             model.addAttribute("name",user.getName());
             model.addAttribute("role",role);
         }
