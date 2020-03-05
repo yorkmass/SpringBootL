@@ -1,6 +1,9 @@
 package com.yorkmass.demo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class User {
 
   private Integer userid;
@@ -8,6 +11,8 @@ public class User {
   private String password;
   private String name;
   private Integer gender;
+  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
   private java.sql.Date birth;
   private String phone;
   private String email;

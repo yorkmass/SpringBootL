@@ -14,4 +14,5 @@ public interface UserService {
     String getUsernameByToken(String token);
     User getUser(String username);
     User getUserByToken(String token);
+    int setUserInfo(User user);
 }

@@ -81,4 +81,9 @@ public class UserServiceImp implements UserService {
         String username=getUsernameByToken(token);
         return getUser(username);
     }
+
+    @Override
+    public int setUserInfo(User user) {
+        return myUserMapper.setUserInfo(user);
+    }
 }

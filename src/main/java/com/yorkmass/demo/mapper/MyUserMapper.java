@@ -2,6 +2,7 @@ package com.yorkmass.demo.mapper;
 
 import com.yorkmass.demo.domain.User;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +24,11 @@ public interface MyUserMapper {
      */
     @Select("select * from user where username=#{username}")
     User getUserByUsername(String username);
+
+    /*
+    更新用户信息
+     */
+    @Update("update user set name=#{name},gender=#{gender},birth=#{birth},phone=#{phone},email=#{email} where username=#{username}")
+    int setUserInfo(User user);
 
 }
