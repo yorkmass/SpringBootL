@@ -86,4 +86,9 @@ public class UserServiceImp implements UserService {
     public int setUserInfo(User user) {
         return myUserMapper.setUserInfo(user);
     }
+
+    @Override
+    public int changePwd(String password,String username) {
+        return myUserMapper.changePwd(password,username);
+    }
 }

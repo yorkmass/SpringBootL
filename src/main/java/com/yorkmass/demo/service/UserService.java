@@ -15,4 +15,5 @@ public interface UserService {
     User getUser(String username);
     User getUserByToken(String token);
     int setUserInfo(User user);
+    int changePwd(String password,String username);
 }

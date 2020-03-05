@@ -7,6 +7,7 @@ import com.yorkmass.demo.domain.User;
 import com.yorkmass.demo.service.UserService;
 import com.yorkmass.demo.service.impl.UserServiceImp;
 import com.yorkmass.demo.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,10 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private UserService service;
+
+    /*
+    登录
+     */
     @RequestMapping("/login")
     public Object login(@RequestParam(value = "username") String username, @RequestParam(value = "password")String password,HttpServletResponse response) throws Exception {
         Map<String,String> map=new HashMap<>();
@@ -41,13 +46,16 @@ public class LoginController {
         }
         return map;
     }
+    /*
+    更新用户信息
+     */
     @RequestMapping("/submitinfo")
     public Object submitInfo(HttpServletRequest request) throws ParseException {
         String token=service.getTokenFromClient(request);
         String username=service.getUsernameByToken(token);
         User user=new User();
         user.setName(request.getParameter("name"));
-        user.setGender(request.getParameter("gender")=="男"?1:0);
+        user.setGender(request.getParameter("gender").equals("男")?1:0);
         user.setEmail(request.getParameter("email"));
         user.setPhone(request.getParameter("phone"));
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -58,8 +66,18 @@ public class LoginController {
         System.out.println("更新成功"+a);
         Map<String,String> map=new HashMap<>();
         map.put("status","success");
-        map.put("user",user.toString());
-        map.put("a",""+a);
+        return map;
+    }
+    /*
+    修改密码,原始密码是之前从token里面取出比较的，所以修改密码之后需要重新登录     */
+    @RequestMapping("/changepwd")
+    public Object changePwd(HttpServletRequest request){
+        String token=service.getTokenFromClient(request);
+        String username=service.getUsernameByToken(token);
+        System.out.println(request.getParameter("newPwd"));
+        service.changePwd(request.getParameter("newPwd"),username);
+        Map<String,String> map=new HashMap<>();
+        map.put("status","success");
         return map;
     }
 

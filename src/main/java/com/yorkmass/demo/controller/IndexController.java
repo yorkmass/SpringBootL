@@ -26,7 +26,7 @@ public class IndexController {
     }
     //@CookieValue("token") String token 注解获取cookies
     /*
-    主页，判断是否登录过，如果token为空，返回登录页面
+    主页，判断是否登录过，如果token为空，返回登录页面,清空了cookies也重定向到登录页面
      */
     @RequestMapping("/index")
     public String indexPage(HttpServletRequest request,Model model){

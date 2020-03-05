@@ -1,6 +1,7 @@
 package com.yorkmass.demo.mapper;
 
 import com.yorkmass.demo.domain.User;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -30,5 +31,11 @@ public interface MyUserMapper {
      */
     @Update("update user set name=#{name},gender=#{gender},birth=#{birth},phone=#{phone},email=#{email} where username=#{username}")
     int setUserInfo(User user);
+
+    /**
+     * 修改密码
+     */
+    @Update("update user set password=#{password} where username=#{username}")
+    int changePwd(@Param("password") String password, @Param("username") String username);
 
 }

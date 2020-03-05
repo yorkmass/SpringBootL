@@ -25,6 +25,7 @@ public class UserInfoController {
         model.addAttribute("gender",user.getGender()==1?"男":"女");
         model.addAttribute("email",user.getEmail());
         model.addAttribute("phone",user.getPhone());
+        model.addAttribute("password",user.getPassword());
         return "thymeleaf/userinfo";
     }
 }
